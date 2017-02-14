@@ -171,6 +171,26 @@
 		  <encoding>UTF-8</encoding>          
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+	    <artifactId>maven-war-plugin</artifactId>
+		<version>2.6</version>
+		<executions>
+		  <execution>
+		    <id>default-war</id>
+		  </execution>
+		  <execution>
+		    <id>additional-war</id>
+		    <phase>package</phase>
+		    <goals>
+		      <goal>war</goal>
+		    </goals>
+		    <configuration>
+		      <outputDirectory>infra/wildfly</outputDirectory>
+		    </configuration>
+		  </execution>
+		</executions>
+	  </plugin>
     </plugins>
   </build>
 </project>
