@@ -186,7 +186,7 @@
 		      <goal>war</goal>
 		    </goals>
 		    <configuration>
-		      <outputDirectory>infra/wildfly</outputDirectory>
+		      <outputDirectory>infra/servers/wildfly</outputDirectory>
 		    </configuration>
 		  </execution>
 		</executions>

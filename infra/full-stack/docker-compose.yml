@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+
+  proxy:
+    build: ../servers/nginx
+    image: project9_proxy:1.0
+    container_name: project9_ec_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - app
+
+  app:
+    build: ../servers/wildfly
+    image: project9_app:1.0
+    container_name: project9_ec_app
+    command: /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
+    ports:
+      - "9990:9990"
+    depends_on:
+      - db
+
+  db:
+    build: ../servers/mariadb
+    image: project9_db:1.0
+    container_name: project9_ec_db
+    environment:
+      MYSQL_ROOT_PASSWORD: team
+      MYSQL_DATABASE: project9
+      MYSQL_USER: team
+      MYSQL_PASSWORD: team
+
+volumes:
+  db-data:
